@@ -158,7 +158,10 @@ function handleClick(event) {
     if (Date.now() - click_time < 100)
         return false;
     click_time = Date.now();
+
     let el = $(event.target);
+    if(event.target.tagName == 'SPAN')
+        el = el.parent();
     if (el.hasClass('part')) {
         effect(el);
         if (el.hasClass('selected')) {
