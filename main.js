@@ -95,7 +95,7 @@ function findAllGuessWords() {
         parts.push(part1.join(''), part2.join(''))
     }
     console.table(parts);
-    parts.sort(randomsort);
+    parts.sort(randomsort).sort(randomsort);
     fillParts();
 }
 

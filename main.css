@@ -63,11 +63,10 @@ body {
 }
 
 #all_words_div {
+    --s: 98vmin;
+    --p: 0px;
     font-size: min(5vw, 28px);
     z-index: 1;
-    --s: 90vmin;
-    --p: 2vmin;
-
     height: var(--s);
     width: var(--s);
     border-radius: 50%;
@@ -98,7 +97,7 @@ body {
     cursor: pointer;
 }
 #all_words_div div span:first-of-type {
-    border-right: 1px solid #4444;
+    border-right: 1px solid #6666;
 }
 #all_words_div div.solved {
     background-color: hsl(140 100% 80%);
