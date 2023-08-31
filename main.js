@@ -177,7 +177,8 @@ function handleClick(event) {
             if (!dw.find(w => w == word)) {
                 return;
             }
-            first_el.text(word)
+            let word_disp =  '<span>'+first_el.data('t')+'</span><span>'+el.data('t')+'</span>'
+            first_el.html(word_disp);
             el.hide();
             undo_stack_elem.push(first_el[0], el[0]);
             first_el.removeClass('part');
