@@ -12,7 +12,9 @@ var gamemode;
 var level;
 var last_selected;
 var words;
+const VERSION = "v1.1";
 function init() {
+    $('#version').text(VERSION);
     let all_words_div = document.querySelector("#all_words_div");
     all_words_div.onmousedown = (event) => handleClick(event);
     all_words_div.ontouchstart = (event) => handleClick(event);

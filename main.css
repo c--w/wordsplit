@@ -116,7 +116,7 @@ body {
     text-align: end;
 }
 
-#seed {
+#seed, #version {
     font-weight: 400;
     font-size: min(2.5vmax, 24px);
     position: fixed;
@@ -126,7 +126,12 @@ body {
     color: dodgerblue;
     z-index: 1;
 }
-
+#version {
+    font-size: min(3vmin, 18px);
+    right: 50vw;
+    transform: translateX(50%);
+    transition: none;
+}
 #share-url {
     position: absolute;
     top: -1000px;
