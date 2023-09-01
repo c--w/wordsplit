@@ -17,22 +17,8 @@ function init() {
     all_words_div.onmousedown = (event) => handleClick(event);
     all_words_div.ontouchstart = (event) => handleClick(event);
     initSeed();
-    if (!gamemode) {// try cookie
-        gamemode = Number(getCookie("gamemode"));
-        level = Number(getCookie("level"));
-    }
-    if (isNaN(gamemode)) { // try select
-        gamemode = $("#gamemode").val();
-        level = $("#level").val();
-    }
-    if (gamemode < 5)
-        gamemode = 8;
-    if (level < 1)
-        level = 1;
-    $("#gamemode").val(gamemode);
-    $("#level").val(level);
-    setCookie("gamemode", gamemode, 730);
-    setCookie("level", level, 730);
+    resolve('gamemode', true);
+    resolve('level', true);
     $("#gamemode").on("change", changeGame);
     $("#level").on("change", changeGame);
     changeGame();
@@ -95,7 +81,7 @@ function findAllGuessWords() {
         parts.push(part1.join(''), part2.join(''))
     }
     console.table(parts);
-    parts.sort(randomsort).sort(randomsort);
+    shuffle(parts);
     fillParts();
 }
 
@@ -160,7 +146,7 @@ function handleClick(event) {
     click_time = Date.now();
 
     let el = $(event.target);
-    if(event.target.tagName == 'SPAN')
+    if (event.target.tagName == 'SPAN')
         el = el.parent();
     if (el.hasClass('part')) {
         effect(el);
@@ -180,7 +166,7 @@ function handleClick(event) {
             if (!dw.find(w => w == word)) {
                 return;
             }
-            let word_disp =  '<span>'+first_el.data('t')+'</span><span>'+el.data('t')+'</span>'
+            let word_disp = '<span>' + first_el.data('t') + '</span><span>' + el.data('t') + '</span>'
             first_el.html(word_disp);
             el.hide();
             undo_stack_elem.push(first_el[0], el[0]);
@@ -207,6 +193,7 @@ function handleClick(event) {
         undo_stack_elem.splice(ind, 2);
     }
 }
+
 function undo() {
     if (undo_stack_elem.length == 0)
         return;
@@ -241,10 +228,15 @@ function updateStats() {
     $("#best").text(best);
 }
 
-function randomsort(a, b) {
-    return Math.random() * 2 - 1;
+function shuffle(a) {
+    let n = a.length;
+    for (let i = 0; i < n - 1; i++) {
+        let j = Math.floor(rand() * (n - i - 1));
+        let tmp = a[n - i - 1];
+        a[n - i - 1] = a[j];
+        a[j] = tmp;
+    }
 }
-
 function rand() {
     seed++;
     let t = seed + 0x6D2B79F5;
@@ -302,4 +294,28 @@ function setBckg() {
 function effect(el) {
     el.addClass('effect');
     setTimeout((el) => el.removeClass('effect'), 100, el);
+}
+
+function resolve(prop, num) {
+    let value = window[prop];
+    if (typeof value == 'undefined') {
+        value = getCookie(prop);
+        if (!value) {
+            value = $('#' + prop).val();
+            window[prop] = value;
+            return;
+        }
+    }
+    let options = $('#' + prop + ' option');
+    let values = $.map(options, function (option) {
+        return option.value;
+    });
+    if(values.indexOf(value) == -1) {
+        value = values[0];        
+    }
+    if(num)
+        value = Number(value);
+    window[prop] = value;
+    $('#' + prop).val(value);
+    setCookie(prop, value, 730);
 }

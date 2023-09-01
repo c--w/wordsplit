@@ -54,38 +54,13 @@ body {
     transition: all 0.25s cubic-bezier(0.5, -0.5, 0.5, 2);
 }
 
-#clear_div {
+#clear_div, #all_words_div {
+    font-size: min(6vw, 28px);
     display: flex;
     justify-content: center;
     margin-top: 2vh;
     flex-wrap: wrap;
     z-index: 1;
-}
-
-#all_words_div {
-    --s: 98vmin;
-    --p: 0px;
-    font-size: min(5vw, 28px);
-    z-index: 1;
-    height: var(--s);
-    width: var(--s);
-    border-radius: 50%;
-    margin: 2vmin auto;
-    text-align: justify;
-}
-
-#all_words_div i,
-#all_words_div::before {
-    content: '';
-    float: left;
-    height: 100%;
-    width: 50%;
-    shape-outside: radial-gradient(farthest-side at right, transparent calc(100% - var(--p)), #fff 0);
-}
-
-#all_words_div i {
-    float: right;
-    shape-outside: radial-gradient(farthest-side at left, transparent calc(100% - var(--p)), #fff 0);
 }
 
 #all_words_div div {
@@ -97,7 +72,7 @@ body {
     cursor: pointer;
 }
 #all_words_div div span:first-of-type {
-    border-right: 1px solid #6666;
+    border-right: 1px solid #8888;
 }
 #all_words_div div.solved {
     background-color: hsl(140 100% 80%);
