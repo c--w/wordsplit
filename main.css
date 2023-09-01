@@ -30,6 +30,7 @@ body {
 #menu {
     align-self: center;
     width: auto;
+    z-index: 1;
 }
 
 .hidden {
@@ -60,14 +61,14 @@ body {
     justify-content: center;
     margin-top: 2vh;
     flex-wrap: wrap;
-    z-index: 1;
+    z-index: 2;
 }
 
 #all_words_div div {
     border: 1px dotted #555;
     margin: 1vw;
     padding: 0 1vw;
-    background-color: #eee8;
+    background-color: #eeee;
     display: inline-block;
     cursor: pointer;
 }
@@ -88,7 +89,14 @@ body {
     background-color: gray;
     transition: all 0.1s cubic-bezier(0.5, -0.5, 0.5, 2);
 }
-
+#continue {
+    display: none;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
 #stats {
     font-size: min(3vmin, 18px);
     font-weight: 400;
@@ -101,6 +109,7 @@ body {
     grid-column-gap: 2vmin;
     grid-row-gap: 0;
     max-width: 25%;
+    z-index: 1;
 }
 
 #stats span:nth-child(even) {
@@ -115,6 +124,7 @@ body {
     right: 1.5vmax;
     cursor: pointer;
     color: dodgerblue;
+    z-index: 1;
 }
 
 #share-url {

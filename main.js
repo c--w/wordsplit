@@ -40,6 +40,8 @@ function changeGame() {
 }
 
 function initGame() {
+    stopFireworks();
+    $('#continue').hide();
     startseed = seed;
     let seed_url;
     seed_url = gamemode + "-" + level + "-" + startseed;
@@ -174,12 +176,11 @@ function handleClick(event) {
             first_el.addClass('solved');
             if ($('div.solved').length == words / 2) {
                 $('div.solved').addClass('winner2');
+                startFireworks();
                 games++;
                 last_time = Math.round((Date.now() - start_time) / 1000);
                 total_time += last_time;
-                setTimeout(() => {
-                    initGame();
-                }, 2000)
+                $('#continue').show();
             }
         }, 500)
     }
