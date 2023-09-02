@@ -12,7 +12,7 @@ var gamemode;
 var level;
 var last_selected;
 var words;
-const VERSION = "v1.1";
+const VERSION = "v1.2";
 function init() {
     $('#version').text(VERSION);
     let all_words_div = document.querySelector("#all_words_div");
@@ -313,7 +313,7 @@ function resolve(prop, num) {
     let values = $.map(options, function (option) {
         return option.value;
     });
-    if(values.indexOf(value) == -1) {
+    if(values.indexOf(""+value) == -1) {
         value = values[0];        
     }
     if(num)
